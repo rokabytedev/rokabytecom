@@ -1,0 +1,341 @@
+/* Global Design Elements */
+:root {
+    --primary-bg: #FFFFFF;
+    --subtle-bg-accent: #F0F4F8; /* or #F8F9FA */
+    --primary-tech-icon: #A0D2DB;
+    --accent-color: #FFC8A2;
+    --primary-text: #4A5568;
+    --secondary-text: #6C757D;
+    --button-text-peach-bg: #FFFFFF; /* or #4A5568 */
+
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-poppins);
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1140px; /* Or 960px */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--primary-text);
+    font-family: var(--font-poppins);
+}
+
+h1 {
+    font-weight: 600; /* Poppins Semibold */
+    font-size: 2.8em; /* Example size, adjust as needed */
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    font-weight: 600; /* Poppins Semibold */
+    font-size: 2.2em; /* Example size */
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+h3 {
+    font-weight: 500; /* Poppins Medium or Regular (400) */
+    font-size: 1.5em; /* Example size */
+    margin-bottom: 0.75em;
+}
+
+p {
+    font-weight: 400; /* Poppins Regular */
+    line-height: 1.8;
+    margin-bottom: 1em;
+}
+
+a {
+    font-weight: 400; /* Poppins Regular */
+    color: var(--primary-tech-icon);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600; /* Poppins Semibold or Regular */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--button-text-peach-bg); /* White */
+}
+
+.btn-primary:hover {
+    background-color: #ffb780; /* Darker Peach */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-decoration: none; /* Remove underline on hover for buttons */
+}
+
+section {
+    padding: 80px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Navigation Bar */
+#navbar {
+    background-color: var(--primary-bg);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow on scroll */
+}
+
+#navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar .logo {
+    font-family: var(--font-poppins);
+    font-weight: 300; /* Poppins Light */
+    font-size: 1.8em;
+    color: var(--primary-text);
+    text-decoration: none;
+}
+#navbar .logo:hover {
+    text-decoration: none;
+    color: var(--primary-text);
+}
+
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#navbar ul li {
+    margin-left: 25px;
+}
+
+#navbar ul li a {
+    font-family: var(--font-poppins);
+    font-weight: 400; /* Poppins Regular */
+    color: var(--primary-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#navbar ul li a:hover {
+    color: var(--primary-tech-icon);
+    text-decoration: none;
+}
+
+/* Hero Section */
+#hero {
+    background-color: var(--primary-bg);
+    min-height: 100vh; /* Full-screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px; /* Account for fixed navbar */
+    /* Optional subtle background pattern - example */
+    /* background-image: radial-gradient(circle, rgba(160, 210, 219, 0.05) 0%, rgba(255,255,255,0) 60%); */
+}
+
+#hero .container {
+    max-width: 800px; /* Constrain width of hero text */
+}
+
+#hero h1 {
+    font-size: 3.5em; /* Larger for hero */
+    margin-bottom: 0.4em;
+}
+
+#hero p {
+    font-size: 1.2em;
+    color: var(--secondary-text); /* Softer contrast */
+    max-width: 600px;
+    margin: 0 auto 1.5em auto;
+}
+
+/* Our Story Section */
+#our-story {
+    background-color: var(--subtle-bg-accent); /* Light Blue-Gray */
+}
+
+/* Our Focus Section */
+#our-focus p {
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+}
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.focus-item {
+    background-color: var(--primary-bg);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    /* Add a subtle shadow or border if desired */
+    /* box-shadow: 0 4px 12px rgba(0,0,0,0.05); */
+    border: 1px solid #E0E4E8;
+}
+
+.focus-item h3 {
+    color: var(--primary-text);
+    margin-top: 0.5em; /* Space after icon */
+}
+
+.focus-item p {
+    font-size: 0.95em;
+    color: var(--secondary-text);
+    text-align: left;
+}
+
+/* Placeholder for icons - you'd replace these with actual SVGs or font icons */
+.focus-item::before {
+    content: '📱'; /* Placeholder icon */
+    font-size: 2.5em;
+    color: var(--primary-tech-icon);
+    display: block;
+    margin-bottom: 15px;
+}
+.focus-item:nth-child(2)::before {
+    content: '💻'; /* Placeholder icon for web */
+}
+
+
+/* Our Vision Section */
+#our-vision {
+    background-color: var(--subtle-bg-accent); /* Light Blue-Gray */
+}
+#our-vision p {
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Get in Touch Section */
+#get-in-touch {
+    text-align: center;
+}
+#get-in-touch .email-link {
+    font-weight: 600; /* Bold */
+    color: var(--primary-tech-icon);
+    font-size: 1.1em;
+}
+#get-in-touch .email-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--subtle-bg-accent); /* Very Light Blue-Gray */
+    color: var(--secondary-text); /* Medium Gray */
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+footer p {
+    margin-bottom: 0.5em;
+}
+
+footer a {
+    color: var(--secondary-text); /* Medium Gray */
+}
+
+footer a:hover {
+    color: var(--primary-tech-icon); /* Soft Sky Blue */
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2em;
+    }
+    #hero h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    #navbar .container {
+        flex-direction: column;
+    }
+
+    #navbar .logo {
+        margin-bottom: 10px;
+    }
+
+    #navbar ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    #navbar ul li {
+        margin: 10px 0;
+        margin-left: 0; /* Reset margin for column layout */
+    }
+
+    #hero {
+        padding-top: 150px; /* Adjust for taller navbar on mobile */
+        min-height: auto; /* Adjust height for content */
+        padding-bottom: 60px;
+    }
+    #hero p {
+        font-size: 1em;
+    }
+
+    .focus-grid {
+        grid-template-columns: 1fr; /* Stack items on mobile */
+    }
+
+    section {
+        padding: 60px 0;
+    }
+} 
