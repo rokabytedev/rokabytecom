@@ -312,87 +312,9 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    #navbar .container {
-       /* flex-wrap: wrap; /* Allow items to wrap, handled by menu logic now */
-    }
-
-    #navbar .logo {
-        /* width: 100%; */ /* Logo takes full width initially */
-        /* text-align: center; */ /* Center logo on small screens */
-        /* margin-bottom: 10px; */ /* Space below logo when links wrap */
-    }
-
-    .menu-toggle {
-        display: flex; /* Show hamburger menu */
-        /* position: absolute; */ /* Not needed if part of flex container */
-        /* top: 15px; */
-        /* right: 20px; */
-    }
-
-    #navbar .nav-links-container {
-        display: none; /* Hide links by default on small screens */
-        flex-direction: column;
-        width: 100%;
-        background-color: #fff; /* Background for dropdown */
-        position: absolute;
-        top: 100%; /* Position below navbar */
-        left: 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Shadow for dropdown */
-        padding: 10px 0; /* Add some padding */
-    }
-
-    #navbar .nav-links-container.active {
-        display: flex; /* Show when active */
-    }
-
-    #navbar .nav-links-container ul {
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        /* padding-top: 10px; */ /* Space above links when expanded */
-    }
-
-    #navbar .nav-links-container ul li {
-        margin: 10px 0;
-        margin-left: 0;
-    }
-
-    #hero h1 {
-        font-size: 2.2rem;
-    }
-
-    #hero p {
-        font-size: 1rem;
-    }
-
-    section h2 {
-        font-size: 1.8rem;
-    }
-
-    .focus-grid {
-        grid-template-columns: 1fr; /* Stack items on small screens */
-    }
-    
-    /* Adjust padding for sections when navbar might be taller due to wrapped logo + menu */
-    #hero,
-    section {
-        padding-top: 60px; /* Increased padding to avoid overlap, should match navbar height or more */
-    }
-    /* Ensure #hero itself also has margin-top if navbar is fixed */
-    #hero {
-        margin-top: 70px; /* Adjust based on actual navbar height + padding */
-    }
-
-    /* Ensure logo and menu toggle are on the same line when menu is closed */
-    /* Handled by the flex properties on #navbar .container */
-
-}
-
 /* Hamburger Menu Animation */
 .menu-toggle.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg); /* Adjusted translate for better centering */
+    transform: translateY(8px) rotate(45deg);
 }
 
 .menu-toggle.active .bar:nth-child(2) {
@@ -400,55 +322,91 @@ footer a:hover {
 }
 
 .menu-toggle.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg); /* Adjusted translate for better centering */
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.2em;
-    }
-    #hero h1 {
-        font-size: 2.5em;
-    }
-
-    h2 {
-        font-size: 1.8em;
-    }
-
     #navbar .container {
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap; /* Ensures logo and menu toggle stay on one line */
+    }
+
+    .menu-toggle {
+        display: flex; /* Show the hamburger menu */
+        order: 1; /* Optional: can help if DOM order is different, but justify-content should handle it */
+    }
+
+    #navbar .nav-links-container {
+        display: none; /* Hidden by default */
+        order: 2; /* Optional: for visual order if DOM order differs */
+        position: absolute;
+        top: 100%; /* Position below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         flex-direction: column;
+        align-items: center; /* Center nav links when expanded */
+        padding: 10px 0;
     }
 
-    #navbar .logo {
-        margin-bottom: 10px;
+    #navbar .nav-links-container.active {
+        display: flex; /* Show when active (toggled by JS) */
     }
 
-    #navbar ul {
+    #navbar .nav-links-container ul {
         flex-direction: column;
         width: 100%;
         text-align: center;
     }
 
-    #navbar ul li {
+    #navbar .nav-links-container ul li {
         margin: 10px 0;
-        margin-left: 0; /* Reset margin for column layout */
+        margin-left: 0; /* Remove left margin for vertical layout */
     }
 
-    #hero {
-        padding-top: 150px; /* Adjust for taller navbar on mobile */
-        min-height: auto; /* Adjust height for content */
-        padding-bottom: 60px;
+    /* General responsive text sizing */
+    h1 { /* General h1, if needed, but #hero h1 is more specific */
+        /* font-size: 2.2em; */ /* Example */
     }
+    #hero h1 {
+        font-size: 2.2rem; /* Adjusted from 2.5em or 2.8rem for mobile */
+    }
+
+    h2 {
+        font-size: 1.8rem; /* Adjusted from 2.2em for mobile */
+    }
+
     #hero p {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     .focus-grid {
-        grid-template-columns: 1fr; /* Stack items on mobile */
+        grid-template-columns: 1fr; /* Stack items in the grid */
+    }
+    
+    /* Adjust padding/margin for fixed navbar */
+    #hero,
+    section { /* Apply to all sections for consistency */
+        padding-top: 80px; /* Increased top padding to ensure content is below navbar */
+    }
+    
+    #hero {
+         margin-top: 0; /* Navbar is fixed, hero doesn't need separate margin-top if padding is handled */
+         /* If navbar height is dynamic, this might need JS, for now fixed padding-top is simpler */
+         padding-bottom: 40px; /* Adjusted mobile padding */
+         min-height: auto; 
     }
 
-    section {
-        padding: 60px 0;
-    }
+    /* Desktop links - ensure they are not columned if overridden by general ul/li rules */
+    /* These rules might be redundant if the default non-media query styles are sufficient */
+    /* #navbar ul { */
+    /*     flex-direction: row; */
+    /* } */
+    /* #navbar ul li { */
+    /*     margin-left: 20px; */
+    /*     margin-right: 0; */
+    /* } */
 } 
