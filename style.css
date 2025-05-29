@@ -19,12 +19,14 @@ body {
     padding: 0;
     line-height: 1.6;
     scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
 .container {
-    max-width: 1140px; /* Or 960px */
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden; /* Clear floats */
 }
 
 h1, h2, h3 {
@@ -92,7 +94,7 @@ a:hover {
 }
 
 section {
-    padding: 80px 0;
+    padding: 60px 0; /* Reduced padding slightly */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -106,14 +108,15 @@ section.visible {
 
 /* Navigation Bar */
 #navbar {
-    background-color: var(--primary-bg);
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
+    background: #fff;
+    color: #333;
+    padding: 1rem 0;
+    position: fixed; /* Keep navbar at the top */
     left: 0;
+    top: 0;
     width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow on scroll */
+    z-index: 1000; /* Ensure navbar is above other content */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 #navbar .container {
@@ -123,77 +126,97 @@ section.visible {
 }
 
 #navbar .logo {
-    font-family: var(--font-poppins);
-    font-weight: 300; /* Poppins Light */
-    font-size: 1.8em;
-    color: var(--primary-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
     text-decoration: none;
 }
+
 #navbar .logo:hover {
     text-decoration: none;
     color: var(--primary-text);
 }
 
-
-#navbar ul {
+#navbar .nav-links-container ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
     display: flex;
 }
 
-#navbar ul li {
-    margin-left: 25px;
+#navbar .nav-links-container ul li {
+    margin-left: 20px;
 }
 
-#navbar ul li a {
-    font-family: var(--font-poppins);
-    font-weight: 400; /* Poppins Regular */
-    color: var(--primary-text);
+#navbar .nav-links-container ul li a {
+    color: #333;
     text-decoration: none;
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
-#navbar ul li a:hover {
-    color: var(--primary-tech-icon);
-    text-decoration: none;
+#navbar .nav-links-container ul li a:hover {
+    color: #f6a866; /* Accent color for hover */
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default, shown on small screens */
+    flex-direction: column;
+    justify-content: space-around; /* For even spacing of bars */
+    width: 30px;
+    height: 25px; /* Adjust height to contain bars nicely */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    position: relative; /* For absolute positioning of bars if needed for animation */
+}
+
+.menu-toggle .bar {
+    background-color: #333;
+    height: 3px;
+    width: 100%; /* Make bars take full width of the button */
+    border-radius: 2px; /* Slightly rounded bars */
+    transition: all 0.3s ease-in-out;
 }
 
 /* Hero Section */
 #hero {
-    background-color: var(--primary-bg);
-    min-height: 100vh; /* Full-screen height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #f4f4f4; /* Light grey background */
+    color: #333;
+    padding: 100px 0 60px; /* Adjust top padding to account for fixed navbar */
     text-align: center;
-    padding-top: 100px; /* Account for fixed navbar */
-    /* Optional subtle background pattern - example */
-    /* background-image: radial-gradient(circle, rgba(160, 210, 219, 0.05) 0%, rgba(255,255,255,0) 60%); */
-}
-
-#hero .container {
-    max-width: 800px; /* Constrain width of hero text */
+    margin-top: 60px; /* Add margin to prevent overlap with fixed navbar */
 }
 
 #hero h1 {
-    font-size: 3.5em; /* Larger for hero */
-    margin-bottom: 0.4em;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 #hero p {
-    font-size: 1.2em;
-    color: var(--secondary-text); /* Softer contrast */
-    max-width: 600px;
-    margin: 0 auto 1.5em auto;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Our Story Section */
 #our-story {
-    background-color: var(--subtle-bg-accent); /* Light Blue-Gray */
+    background: #fff;
+}
+
+#our-story p {
+    text-align: left;
 }
 
 /* Our Focus Section */
+#our-focus {
+    background: #f9f9f9; /* Slightly different light grey */
+}
+
 #our-focus p {
     text-align: center;
     max-width: 700px;
@@ -201,26 +224,26 @@ section.visible {
     margin-right: auto;
     margin-bottom: 2em;
 }
+
 .focus-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    gap: 30px;
     margin-top: 40px;
 }
 
 .focus-item {
-    background-color: var(--primary-bg);
-    padding: 30px;
+    background: #fff;
+    padding: 25px;
     border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     text-align: center;
-    /* Add a subtle shadow or border if desired */
-    /* box-shadow: 0 4px 12px rgba(0,0,0,0.05); */
-    border: 1px solid #E0E4E8;
 }
 
 .focus-item h3 {
-    color: var(--primary-text);
-    margin-top: 0.5em; /* Space after icon */
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
 }
 
 .focus-item p {
@@ -244,50 +267,140 @@ section.visible {
 
 /* Our Vision Section */
 #our-vision {
-    background-color: var(--subtle-bg-accent); /* Light Blue-Gray */
+    background: #fff;
 }
+
 #our-vision p {
-    text-align: center;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
 }
 
 /* Get in Touch Section */
 #get-in-touch {
-    text-align: center;
+    background: #f4f4f4;
 }
+
 #get-in-touch .email-link {
-    font-weight: 600; /* Bold */
-    color: var(--primary-tech-icon);
-    font-size: 1.1em;
+    color: #f6a866;
+    text-decoration: none;
+    font-weight: 500;
 }
+
 #get-in-touch .email-link:hover {
-    color: var(--accent-color);
     text-decoration: underline;
 }
 
 
 /* Footer */
 footer {
-    background-color: var(--subtle-bg-accent); /* Very Light Blue-Gray */
-    color: var(--secondary-text); /* Medium Gray */
+    background: #333;
+    color: #fff;
     text-align: center;
-    padding: 30px 0;
-    font-size: 0.9em;
+    padding: 20px 0;
 }
 
 footer p {
-    margin-bottom: 0.5em;
+    margin: 5px 0;
+    font-size: 0.9rem;
 }
 
 footer a {
-    color: var(--secondary-text); /* Medium Gray */
+    color: #f6a866;
+    text-decoration: none;
 }
 
 footer a:hover {
-    color: var(--primary-tech-icon); /* Soft Sky Blue */
     text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #navbar .container {
+       /* flex-wrap: wrap; /* Allow items to wrap, handled by menu logic now */
+    }
+
+    #navbar .logo {
+        /* width: 100%; */ /* Logo takes full width initially */
+        /* text-align: center; */ /* Center logo on small screens */
+        /* margin-bottom: 10px; */ /* Space below logo when links wrap */
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger menu */
+        /* position: absolute; */ /* Not needed if part of flex container */
+        /* top: 15px; */
+        /* right: 20px; */
+    }
+
+    #navbar .nav-links-container {
+        display: none; /* Hide links by default on small screens */
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff; /* Background for dropdown */
+        position: absolute;
+        top: 100%; /* Position below navbar */
+        left: 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Shadow for dropdown */
+        padding: 10px 0; /* Add some padding */
+    }
+
+    #navbar .nav-links-container.active {
+        display: flex; /* Show when active */
+    }
+
+    #navbar .nav-links-container ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        /* padding-top: 10px; */ /* Space above links when expanded */
+    }
+
+    #navbar .nav-links-container ul li {
+        margin: 10px 0;
+        margin-left: 0;
+    }
+
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .focus-grid {
+        grid-template-columns: 1fr; /* Stack items on small screens */
+    }
+    
+    /* Adjust padding for sections when navbar might be taller due to wrapped logo + menu */
+    #hero,
+    section {
+        padding-top: 60px; /* Increased padding to avoid overlap, should match navbar height or more */
+    }
+    /* Ensure #hero itself also has margin-top if navbar is fixed */
+    #hero {
+        margin-top: 70px; /* Adjust based on actual navbar height + padding */
+    }
+
+    /* Ensure logo and menu toggle are on the same line when menu is closed */
+    /* Handled by the flex properties on #navbar .container */
+
+}
+
+/* Hamburger Menu Animation */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /* Adjusted translate for better centering */
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); /* Adjusted translate for better centering */
 }
 
 /* Responsive Design */

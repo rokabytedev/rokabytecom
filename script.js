@@ -1,22 +1,55 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu');
+    const navLinksContainer = document.querySelector('#navbar .nav-links-container');
+
+    if (mobileMenuButton && navLinksContainer) {
+        mobileMenuButton.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+            mobileMenuButton.classList.toggle('active'); // For animating the hamburger icon
+        });
+    }
+
     // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('#navbar ul li a');
+    const navLinks = document.querySelectorAll('#navbar .nav-links-container ul li a');
+    const navbarHeight = document.getElementById('navbar').offsetHeight;
+
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                // Calculate position, considering the fixed navbar height
-                const navbarHeight = document.getElementById('navbar').offsetHeight;
-                const targetPosition = targetSection.offsetTop - navbarHeight;
+            const targetElement = document.querySelector(targetId);
 
+            if (targetElement) {
+                let targetPosition = targetElement.offsetTop - navbarHeight;
+
+                // Special adjustment for the #hero section as it has an additional margin-top
+                if (targetId === '#hero') {
+                    const heroComputedStyle = window.getComputedStyle(targetElement);
+                    const heroMarginTop = parseInt(heroComputedStyle.marginTop, 10);
+                    targetPosition = targetElement.offsetTop - navbarHeight - heroMarginTop; 
+                }
+                
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+
+                // Close mobile menu after clicking a link
+                if (navLinksContainer.classList.contains('active')) {
+                    navLinksContainer.classList.remove('active');
+                    mobileMenuButton.classList.remove('active');
+                }
             }
         });
+    });
+
+    // Optional: Close mobile menu if clicked outside
+    document.addEventListener('click', (event) => {
+        const isClickInsideNavbar = document.getElementById('navbar').contains(event.target);
+        if (!isClickInsideNavbar && navLinksContainer.classList.contains('active')) {
+            navLinksContainer.classList.remove('active');
+            mobileMenuButton.classList.remove('active');
+        }
     });
 
     // Fade-in sections on scroll
